@@ -28,7 +28,7 @@ if st.button("Generate Response"):
 
                 response = requests.post(
 
-                    "http://127.0.0.1:8000/travel-planner",
+                    "http://fastapi:8000/travel-planner",
 
                     json={
                         "query": user_query
