@@ -19,7 +19,7 @@ user_query = st.text_input(
 )
 
 if st.button("Generate Response"):
-
+    
     if user_query:
 
         with st.spinner("Generating response..."):
@@ -32,14 +32,26 @@ if st.button("Generate Response"):
 
                     json={
                         "query": user_query
-                    }
+                    },
+
+                    timeout=120
                 )
 
-                result = response.json()
+                if response.status_code == 200:
 
-                st.success("Response Generated")
+                    result = response.json()
 
-                st.write(result["response"])
+                    st.success("Response Generated")
+
+                    st.write(result["response"])
+
+                else:
+
+                    st.error(
+                        f"Backend Error: {response.status_code}"
+                    )
+
+                    st.write(response.text)
 
             except Exception as e:
 
