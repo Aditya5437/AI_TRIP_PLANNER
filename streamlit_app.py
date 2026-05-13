@@ -28,7 +28,7 @@ if st.button("Generate Response"):
 
                 response = requests.post(
 
-                    "http://fastapi:8000/travel-planner",
+                    "https://ai-trip-planner-fai.onrender.com/travel-planner",
 
                     json={
                         "query": user_query
