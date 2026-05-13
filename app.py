@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-
 from pydantic import BaseModel
+from fastapi.responses import JSONResponse
 
 from trip_planner.agent.agent_executor import (
     run_agent
@@ -25,7 +25,6 @@ def home():
 
 
 @app.post("/travel-planner")
-
 def travel_planner(request: TravelRequest):
 
     try:
@@ -34,12 +33,19 @@ def travel_planner(request: TravelRequest):
             request.query
         )
 
-        return {
-            "response": response
-        }
+        return JSONResponse(
+            content={
+                "response": response
+            }
+        )
 
     except Exception as e:
 
-        return {
-            "error": str(e)
-        }
+        return JSONResponse(
+
+            status_code=500,
+
+            content={
+                "error": str(e)
+            }
+        )

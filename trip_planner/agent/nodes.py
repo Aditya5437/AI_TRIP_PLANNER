@@ -69,13 +69,12 @@ def final_response_node(state):
     prompt = f"""
     You are an AI Trip Planner.
 
-    Generate a concise and structured response.
-
     Rules:
-    - Keep response under 250 words
-    - Use bullet points where possible
-    - Keep itinerary short and readable
-    - Avoid very long explanations
+    - Maximum 120 words
+    - Keep response concise
+    - Use bullet points
+    - Avoid long explanations
+    - Keep itinerary compact and readable
 
     User Query:
     {query}

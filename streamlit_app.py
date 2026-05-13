@@ -1,5 +1,6 @@
 import streamlit as st
 import requests
+import time
 
 st.set_page_config(
     page_title="AI Trip Planner",
@@ -8,7 +9,6 @@ st.set_page_config(
 )
 
 st.title("✈️ AI Trip Planner")
-st.write("Frontend Working")
 
 st.markdown(
     "Plan trips using AI Agent + MCP + LangGraph"
@@ -19,26 +19,39 @@ user_query = st.text_input(
 )
 
 if st.button("Generate Response"):
-    
+
     if user_query:
 
         with st.spinner("Generating response..."):
 
+            response = None
+
+            for attempt in range(3):
+
+                try:
+
+                    response = requests.post(
+
+                        "https://ai-trip-planner-fai.onrender.com/travel-planner",
+
+                        json={
+                            "query": user_query
+                        },
+
+                        timeout=120
+                    )
+
+                    if response.status_code == 200:
+                        break
+
+                    time.sleep(5)
+
+                except:
+                    time.sleep(5)
+
             try:
 
-                response = requests.post(
-                    
-
-                    "https://ai-trip-planner-fai.onrender.com/travel-planner",
-
-                    json={
-                        "query": user_query
-                    },
-
-                    timeout=120
-                )
-
-                if response.status_code == 200:
+                if response and response.status_code == 200:
 
                     result = response.json()
 
