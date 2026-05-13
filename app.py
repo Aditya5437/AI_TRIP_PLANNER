@@ -25,12 +25,21 @@ def home():
 
 
 @app.post("/travel-planner")
+
 def travel_planner(request: TravelRequest):
 
-    response = run_agent(
-        request.query
-    )
+    try:
 
-    return {
-        "response": response
-    }
+        response = run_agent(
+            request.query
+        )
+
+        return {
+            "response": response
+        }
+
+    except Exception as e:
+
+        return {
+            "error": str(e)
+        }

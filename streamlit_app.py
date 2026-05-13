@@ -27,6 +27,7 @@ if st.button("Generate Response"):
             try:
 
                 response = requests.post(
+                    
 
                     "https://ai-trip-planner-fai.onrender.com/travel-planner",
 
@@ -41,9 +42,19 @@ if st.button("Generate Response"):
 
                     result = response.json()
 
-                    st.success("Response Generated")
+                    if "response" in result:
 
-                    st.write(result["response"])
+                        st.success("Response Generated")
+
+                        st.write(result["response"])
+
+                    elif "error" in result:
+
+                        st.error(result["error"])
+
+                    else:
+
+                        st.error("Unknown backend response")
 
                 else:
 

@@ -61,19 +61,27 @@ def tool_execution_node(state):
 
 
 def final_response_node(state):
-
+    
     query = state["user_query"]
 
     tool_output = state["tool_output"]
 
     prompt = f"""
+    You are an AI Trip Planner.
+
+    Generate a concise and structured response.
+
+    Rules:
+    - Keep response under 250 words
+    - Use bullet points where possible
+    - Keep itinerary short and readable
+    - Avoid very long explanations
+
     User Query:
     {query}
 
     Tool Output:
     {tool_output}
-
-    Generate a helpful travel response.
     """
 
     response = llm.invoke(prompt)
