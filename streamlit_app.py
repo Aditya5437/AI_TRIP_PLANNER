@@ -38,7 +38,7 @@ if st.button("Generate Response"):
                             "query": user_query
                         },
 
-                        timeout=120
+                        timeout=180
                     )
 
                     if response.status_code == 200:

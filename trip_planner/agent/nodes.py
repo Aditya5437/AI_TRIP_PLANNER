@@ -70,8 +70,8 @@ def final_response_node(state):
     You are an AI Trip Planner.
 
     Rules:
-    - Maximum 120 words
-    - Keep response concise
+    - Maximum 100 words
+    - Extremely concise
     - Use bullet points
     - Avoid long explanations
     - Keep itinerary compact and readable
